@@ -19,3 +19,27 @@ def get_candidate_by_id(id_: str) -> dict:
     url = url_base + f"/{id_}"
     response = requests.get(url, headers=HEADERS)
     return response.json()
+
+
+@candidate_blueprints.route("/insert", methods =['POST'])
+def insert_candidate() -> dict:
+    candidate = requests.get().json()
+    url = url_base + "/insert"
+    response = requests.post(url, headers=HEADERS, json=candidate)
+    return response.json()
+
+
+@candidate_blueprints.route("/update/<string:id_>", methods=['PUT'])
+def update_candidate(id_: str) -> dict:
+    candidate = requests.get().json()
+    url = url_base + f'/update/{id_}'
+    response = requests.patch(url, headers=HEADERS, json=candidate)
+    return response.json()
+
+
+@candidate_blueprints.route("/delete/<string:id_>", methods =['DELETE'])
+def delete_candidate(id_: str) -> dict:
+    url = url_base + f'/delete/{id_}'
+    response = requests.delete(url, headers=HEADERS)
+    return response.json()
+
