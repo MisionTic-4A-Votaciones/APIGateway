@@ -23,7 +23,7 @@ def get_result_by_id(id_: str) -> dict:
 
 @result_blueprints.route("/result/insert", methods=['POST'])
 def insert_result() -> dict:
-    result = requests.get().json()
+    result = request.get_json()
     url = url_base + "/insert"
     response = requests.post(url, headers=HEADERS, json=result)
     return response.json()
@@ -31,7 +31,7 @@ def insert_result() -> dict:
 
 @result_blueprints.route("/result/update/<string:id_>", methods=['PUT'])
 def update_result(id_: str) -> dict:
-    result = requests.get().json()
+    result = request.get_json()
     url = url_base + f'/update/{id_}'
     response = requests.patch(url, headers=HEADERS, json=result)
     return response.json()

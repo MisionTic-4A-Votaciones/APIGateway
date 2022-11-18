@@ -23,7 +23,7 @@ def get_party_by_id(id_: str) -> dict:
 
 @party_blueprints.route("/party/insert", methods=['POST'])
 def insert_party() -> dict:
-    party = requests.get().json()
+    party = request.get_json()
     url = url_base + "/insert"
     response = requests.post(url, headers=HEADERS, json=party)
     return response.json()
@@ -31,7 +31,7 @@ def insert_party() -> dict:
 
 @party_blueprints.route("/party/update/<string:id_>", methods=['PUT'])
 def update_party(id_: str) -> dict:
-    party = requests.get().json()
+    party = request.get_json()
     url = url_base + f'/update/{id_}'
     response = requests.patch(url, headers=HEADERS, json=party)
     return response.json()

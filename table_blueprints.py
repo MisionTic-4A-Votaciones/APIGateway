@@ -23,7 +23,7 @@ def get_table_by_id(id_: str) -> dict:
 
 @table_blueprints.route("/table/insert", methods=['POST'])
 def insert_table() -> dict:
-    table = requests.get().json()
+    table = request.get_json()
     url = url_base + "/insert"
     response = requests.post(url, headers=HEADERS, json=table)
     return response.json()
@@ -31,7 +31,7 @@ def insert_table() -> dict:
 
 @table_blueprints.route("/table/update/<string:id_>", methods=['PUT'])
 def update_table(id_: str) -> dict:
-    table = requests.get().json()
+    table = request.get_json()
     url = url_base + f'/update/{id_}'
     response = requests.patch(url, headers=HEADERS, json=table)
     return response.json()

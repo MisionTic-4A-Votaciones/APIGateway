@@ -23,7 +23,7 @@ def get_permission_by_id(id_: int) -> dict:
 
 @permission_blueprints.route("/permission/insert", methods=['POST'])
 def insert_permission() -> dict:
-    permission = requests.get().json()
+    permission = request.get_json()
     url = url_base + "/insert"
     response = requests.post(url, headers=HEADERS, json=permission)
     return response.json()
@@ -31,7 +31,7 @@ def insert_permission() -> dict:
 
 @permission_blueprints.route("/permission/update/<string:id_>", methods=['PUT'])
 def update_permission(id_: int) -> dict:
-    permission = requests.get().json()
+    permission = request.get_json()
     url = url_base + f'/update/{id_}'
     response = requests.patch(url, headers=HEADERS, json=permission)
     return response.json()

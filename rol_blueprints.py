@@ -23,7 +23,7 @@ def get_rol_by_id(id_: int) -> dict:
 
 @rol_blueprints.route("/rol/insert", methods=['POST'])
 def insert_rol() -> dict:
-    rol = requests.get().json()
+    rol = request.get_json()
     url = url_base + "/insert"
     response = requests.post(url, headers=HEADERS, json=rol)
     return response.json()
@@ -31,7 +31,7 @@ def insert_rol() -> dict:
 
 @rol_blueprints.route("/rol/update/<string:id_>", methods=['PUT'])
 def update_rol(id_: int) -> dict:
-    rol = requests.get().json()
+    rol = request.get_json()
     url = url_base + f'/update/{id_}'
     response = requests.patch(url, headers=HEADERS, json=rol)
     return response.json()

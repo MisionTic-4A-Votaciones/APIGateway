@@ -23,7 +23,7 @@ def get_candidate_by_id(id_: str) -> dict:
 
 @candidate_blueprints.route("/candidate/insert", methods=['POST'])
 def insert_candidate() -> dict:
-    candidate = requests.get().json()
+    candidate = request.get_json()
     url = url_base + "/insert"
     response = requests.post(url, headers=HEADERS, json=candidate)
     return response.json()
@@ -31,7 +31,7 @@ def insert_candidate() -> dict:
 
 @candidate_blueprints.route("/candidate/update/<string:id_>", methods=['PUT'])
 def update_candidate(id_: str) -> dict:
-    candidate = requests.get().json()
+    candidate = request.get_json()
     url = url_base + f'/update/{id_}'
     response = requests.patch(url, headers=HEADERS, json=candidate)
     return response.json()
