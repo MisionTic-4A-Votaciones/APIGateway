@@ -21,7 +21,7 @@ def get_party_by_id(id_: str) -> dict:
     return response.json()
 
 
-@party_blueprints.route("/insert", methods=['POST'])
+@party_blueprints.route("/party/insert", methods=['POST'])
 def insert_party() -> dict:
     party = requests.get().json()
     url = url_base + "/insert"
@@ -29,7 +29,7 @@ def insert_party() -> dict:
     return response.json()
 
 
-@party_blueprints.route("/update/<string:id_>", methods=['PUT'])
+@party_blueprints.route("/party/update/<string:id_>", methods=['PUT'])
 def update_party(id_: str) -> dict:
     party = requests.get().json()
     url = url_base + f'/update/{id_}'
@@ -37,7 +37,7 @@ def update_party(id_: str) -> dict:
     return response.json()
 
 
-@party_blueprints.route("/delete/<string:id_>", methods=['DELETE'])
+@party_blueprints.route("/party/delete/<string:id_>", methods=['DELETE'])
 def delete_party(id_: str) -> dict:
     url = url_base + f'/delete/{id_}'
     response = requests.delete(url, headers=HEADERS)

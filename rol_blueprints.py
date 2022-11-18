@@ -21,7 +21,7 @@ def get_rol_by_id(id_: int) -> dict:
     return response.json()
 
 
-@rol_blueprints.route("/insert", methods=['POST'])
+@rol_blueprints.route("/rol/insert", methods=['POST'])
 def insert_rol() -> dict:
     rol = requests.get().json()
     url = url_base + "/insert"
@@ -29,7 +29,7 @@ def insert_rol() -> dict:
     return response.json()
 
 
-@rol_blueprints.route("/update/<string:id_>", methods=['PUT'])
+@rol_blueprints.route("/rol/update/<string:id_>", methods=['PUT'])
 def update_rol(id_: int) -> dict:
     rol = requests.get().json()
     url = url_base + f'/update/{id_}'
@@ -37,7 +37,7 @@ def update_rol(id_: int) -> dict:
     return response.json()
 
 
-@rol_blueprints.route("/delete/<string:id_>", methods=['DELETE'])
+@rol_blueprints.route("/rol/delete/<string:id_>", methods=['DELETE'])
 def delete_rol(id_: int) -> dict:
     url = url_base + f'/delete/{id_}'
     response = requests.delete(url, headers=HEADERS)

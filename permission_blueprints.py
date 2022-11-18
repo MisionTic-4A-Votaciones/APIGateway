@@ -21,7 +21,7 @@ def get_permission_by_id(id_: int) -> dict:
     return response.json()
 
 
-@permission_blueprints.route("/insert", methods=['POST'])
+@permission_blueprints.route("/permission/insert", methods=['POST'])
 def insert_permission() -> dict:
     permission = requests.get().json()
     url = url_base + "/insert"
@@ -29,7 +29,7 @@ def insert_permission() -> dict:
     return response.json()
 
 
-@permission_blueprints.route("/update/<string:id_>", methods=['PUT'])
+@permission_blueprints.route("/permission/update/<string:id_>", methods=['PUT'])
 def update_permission(id_: int) -> dict:
     permission = requests.get().json()
     url = url_base + f'/update/{id_}'
@@ -37,7 +37,7 @@ def update_permission(id_: int) -> dict:
     return response.json()
 
 
-@permission_blueprints.route("/delete/<string:id_>", methods=['DELETE'])
+@permission_blueprints.route("/permission/delete/<string:id_>", methods=['DELETE'])
 def delete_permission(id_: int) -> dict:
     url = url_base + f'/delete/{id_}'
     response = requests.delete(url, headers=HEADERS)

@@ -21,7 +21,7 @@ def get_result_by_id(id_: str) -> dict:
     return response.json()
 
 
-@result_blueprints.route("/insert", methods=['POST'])
+@result_blueprints.route("/result/insert", methods=['POST'])
 def insert_result() -> dict:
     result = requests.get().json()
     url = url_base + "/insert"
@@ -29,7 +29,7 @@ def insert_result() -> dict:
     return response.json()
 
 
-@result_blueprints.route("/update/<string:id_>", methods=['PUT'])
+@result_blueprints.route("/result/update/<string:id_>", methods=['PUT'])
 def update_result(id_: str) -> dict:
     result = requests.get().json()
     url = url_base + f'/update/{id_}'
@@ -37,7 +37,7 @@ def update_result(id_: str) -> dict:
     return response.json()
 
 
-@result_blueprints.route("/delete/<string:id_>", methods=['DELETE'])
+@result_blueprints.route("/result/delete/<string:id_>", methods=['DELETE'])
 def delete_result(id_: str) -> dict:
     url = url_base + f'/delete/{id_}'
     response = requests.delete(url, headers=HEADERS)

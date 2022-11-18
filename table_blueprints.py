@@ -21,7 +21,7 @@ def get_table_by_id(id_: str) -> dict:
     return response.json()
 
 
-@table_blueprints.route("/insert", methods=['POST'])
+@table_blueprints.route("/table/insert", methods=['POST'])
 def insert_table() -> dict:
     table = requests.get().json()
     url = url_base + "/insert"
@@ -29,7 +29,7 @@ def insert_table() -> dict:
     return response.json()
 
 
-@table_blueprints.route("/update/<string:id_>", methods=['PUT'])
+@table_blueprints.route("/table/update/<string:id_>", methods=['PUT'])
 def update_table(id_: str) -> dict:
     table = requests.get().json()
     url = url_base + f'/update/{id_}'
@@ -37,7 +37,7 @@ def update_table(id_: str) -> dict:
     return response.json()
 
 
-@table_blueprints.route("/delete/<string:id_>", methods=['DELETE'])
+@table_blueprints.route("/table/delete/<string:id_>", methods=['DELETE'])
 def delete_table(id_: str) -> dict:
     url = url_base + f'/delete/{id_}'
     response = requests.delete(url, headers=HEADERS)

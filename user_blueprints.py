@@ -21,7 +21,7 @@ def get_user_by_id(id_: int) -> dict:
     return response.json()
 
 
-@user_blueprints.route("/insert", methods=['POST'])
+@user_blueprints.route("/user/insert", methods=['POST'])
 def insert_user() -> dict:
     user = requests.get().json()
     url = url_base + "/insert"
@@ -29,7 +29,7 @@ def insert_user() -> dict:
     return response.json()
 
 
-@user_blueprints.route("/update/<string:id_>", methods=['PUT'])
+@user_blueprints.route("/user/update/<string:id_>", methods=['PUT'])
 def update_user(id_: int) -> dict:
     user = requests.get().json()
     url = url_base + f'/update/{id_}'
@@ -37,7 +37,7 @@ def update_user(id_: int) -> dict:
     return response.json()
 
 
-@user_blueprints.route("/delete/<string:id_>", methods=['DELETE'])
+@user_blueprints.route("/user/delete/<string:id_>", methods=['DELETE'])
 def delete_user(id_: int) -> dict:
     url = url_base + f'/delete/{id_}'
     response = requests.delete(url, headers=HEADERS)
