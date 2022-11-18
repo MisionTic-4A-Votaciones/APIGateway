@@ -6,11 +6,29 @@ from datetime import timedelta
 import requests
 
 import utils
+from candidate_blueprints import candidate_blueprints
+from party_blueprints import party_blueprints
+from result_blueprints import result_blueprints
+from table_blueprints import table_blueprints
+from permission_blueprints import permission_blueprints
+from rol_blueprints import rol_blueprints
+from user_blueprints import user_blueprints
+
+
 
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = "votingG10"
 cors = CORS(app)
 jwt = JWTManager(app)
+
+app.register_blueprint(candidate_blueprints)
+app.register_blueprint(party_blueprints)
+app.register_blueprint(result_blueprints)
+app.register_blueprint(table_blueprints)
+app.register_blueprint(permission_blueprints)
+app.register_blueprint(rol_blueprints)
+app.register_blueprint(user_blueprints)
+
 
 
 @app.before_request
@@ -44,8 +62,9 @@ def login() -> tuple:
     response = requests.post(url, headers=utils.HEADERS, json=user)
     if response.status_code == 200:
         user_logged = response.json()
+        del user_logged['rol']['permissions']
         expires = timedelta(days=1)
-        access_token = create_access_token(identity=user, expires_delta=expires)
+        access_token = create_access_token(identity=user_logged, expires_delta=expires)
         return {"token": access_token, "user_id": user_logged.get('id')}, 200
     else:
         return {"message": "Access denied"}, 401

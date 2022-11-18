@@ -33,6 +33,6 @@ for module in modules:
         }
         response = requests.post(url, headers=headers, json=body)
         print(response.json())
-        data_ =response.json()
+        data_ = response.json()
         url_relation = f'{security_backend}/rol/update/{admin.get("idRol")}/add_permission/{data_.get("id")}'
-        response.put(url_relation, headers=headers)
+        response = requests.put(url_relation, headers=headers)
