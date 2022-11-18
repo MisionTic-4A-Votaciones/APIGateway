@@ -14,14 +14,14 @@ def get_all_users() -> dict:
     return response.json()
 
 
-@user_blueprints.route("/user/<string: id_>", methods=['GET'])
+@user_blueprints.route("/user/<string:id_>", methods=['GET'])
 def get_user_by_id(id_: int) -> dict:
     url = url_base + f"/{id_}"
     response = requests.get(url, headers=HEADERS)
     return response.json()
 
 
-@user_blueprints.route("/insert", methods =['POST'])
+@user_blueprints.route("/insert", methods=['POST'])
 def insert_user() -> dict:
     user = requests.get().json()
     url = url_base + "/insert"

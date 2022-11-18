@@ -14,14 +14,14 @@ def get_all_parties() -> dict:
     return response.json()
 
 
-@party_blueprints.route("/party/<string: id_>", methods=['GET'])
+@party_blueprints.route("/party/<string:id_>", methods=['GET'])
 def get_party_by_id(id_: str) -> dict:
     url = url_base + f"/{id_}"
     response = requests.get(url, headers=HEADERS)
     return response.json()
 
 
-@party_blueprints.route("/insert", methods =['POST'])
+@party_blueprints.route("/insert", methods=['POST'])
 def insert_party() -> dict:
     party = requests.get().json()
     url = url_base + "/insert"

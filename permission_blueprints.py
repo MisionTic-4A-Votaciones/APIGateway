@@ -14,14 +14,14 @@ def get_all_permissions() -> dict:
     return response.json()
 
 
-@permission_blueprints.route("/permission/<string: id_>", methods=['GET'])
+@permission_blueprints.route("/permission/<string:id_>", methods=['GET'])
 def get_permission_by_id(id_: int) -> dict:
     url = url_base + f"/{id_}"
     response = requests.get(url, headers=HEADERS)
     return response.json()
 
 
-@permission_blueprints.route("/insert", methods =['POST'])
+@permission_blueprints.route("/insert", methods=['POST'])
 def insert_permission() -> dict:
     permission = requests.get().json()
     url = url_base + "/insert"

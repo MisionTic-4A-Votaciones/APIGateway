@@ -14,14 +14,14 @@ def get_all_results() -> dict:
     return response.json()
 
 
-@result_blueprints.route("/result/<string: id_>", methods=['GET'])
+@result_blueprints.route("/result/<string:id_>", methods=['GET'])
 def get_result_by_id(id_: str) -> dict:
     url = url_base + f"/{id_}"
     response = requests.get(url, headers=HEADERS)
     return response.json()
 
 
-@result_blueprints.route("/insert", methods =['POST'])
+@result_blueprints.route("/insert", methods=['POST'])
 def insert_result() -> dict:
     result = requests.get().json()
     url = url_base + "/insert"

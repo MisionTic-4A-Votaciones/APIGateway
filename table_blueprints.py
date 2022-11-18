@@ -14,14 +14,14 @@ def get_all_tables() -> dict:
     return response.json()
 
 
-@table_blueprints.route("/table/<string: id_>", methods=['GET'])
+@table_blueprints.route("/table/<string:id_>", methods=['GET'])
 def get_table_by_id(id_: str) -> dict:
     url = url_base + f"/{id_}"
     response = requests.get(url, headers=HEADERS)
     return response.json()
 
 
-@table_blueprints.route("/insert", methods =['POST'])
+@table_blueprints.route("/insert", methods=['POST'])
 def insert_table() -> dict:
     table = requests.get().json()
     url = url_base + "/insert"

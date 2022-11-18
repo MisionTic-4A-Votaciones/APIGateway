@@ -14,14 +14,14 @@ def get_all_roles() -> dict:
     return response.json()
 
 
-@rol_blueprints.route("/rol/<string: id_>", methods=['GET'])
+@rol_blueprints.route("/rol/<string:id_>", methods=['GET'])
 def get_rol_by_id(id_: int) -> dict:
     url = url_base + f"/{id_}"
     response = requests.get(url, headers=HEADERS)
     return response.json()
 
 
-@rol_blueprints.route("/insert", methods =['POST'])
+@rol_blueprints.route("/insert", methods=['POST'])
 def insert_rol() -> dict:
     rol = requests.get().json()
     url = url_base + "/insert"

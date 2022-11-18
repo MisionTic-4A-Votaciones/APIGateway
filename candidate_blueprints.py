@@ -14,14 +14,14 @@ def get_all_candidates() -> dict:
     return response.json()
 
 
-@candidate_blueprints.route("/candidate/<string: id_>", methods=['GET'])
+@candidate_blueprints.route("/candidate/<string:id_>", methods=['GET'])
 def get_candidate_by_id(id_: str) -> dict:
-    url = url_base + f"/{id_}"
+    url = url_base + f'/{id_}'
     response = requests.get(url, headers=HEADERS)
     return response.json()
 
 
-@candidate_blueprints.route("/insert", methods =['POST'])
+@candidate_blueprints.route("/candidate/insert", methods=['POST'])
 def insert_candidate() -> dict:
     candidate = requests.get().json()
     url = url_base + "/insert"
