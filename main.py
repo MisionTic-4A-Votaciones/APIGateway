@@ -30,7 +30,6 @@ app.register_blueprint(rol_blueprints)
 app.register_blueprint(user_blueprints)
 
 
-
 @app.before_request
 def before_request_callback():
     endpoint = utils.clean_url(request.path)
