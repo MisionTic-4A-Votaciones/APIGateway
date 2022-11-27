@@ -4,6 +4,7 @@ from flask_jwt_extended import (JWTManager, create_access_token, get_jwt_identit
 from waitress import serve
 from datetime import timedelta
 import requests
+import json
 
 import utils
 from candidate_blueprints import candidate_blueprints
@@ -13,8 +14,7 @@ from table_blueprints import table_blueprints
 from permission_blueprints import permission_blueprints
 from rol_blueprints import rol_blueprints
 from user_blueprints import user_blueprints
-
-
+from report_blueprints import report_blueprints
 
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = "votingG10"
@@ -28,6 +28,7 @@ app.register_blueprint(table_blueprints)
 app.register_blueprint(permission_blueprints)
 app.register_blueprint(rol_blueprints)
 app.register_blueprint(user_blueprints)
+app.register_blueprint(report_blueprints)
 
 
 @app.before_request
@@ -72,5 +73,6 @@ def login() -> tuple:
 # Config and execute app
 if __name__ == "__main__":
     data_config = utils.load_file_config()
-    print("API Gateway Server Running: http://" + data_config.get('url-api_gateway') + ":" + str(data_config.get('port')))
+    print(
+        "API Gateway Server Running: http://" + data_config.get('url-api_gateway') + ":" + str(data_config.get('port')))
     serve(app, host=data_config.get('url-api_gateway'), port=data_config.get('port'))

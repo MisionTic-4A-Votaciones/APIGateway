@@ -23,11 +23,11 @@ for rol in roles:
         citizen = response.json()
     print(response.json())
 
+# Add permissions for Administrator
 
-# Add permissions
-
-modules = ["candidate", "party", "table", "result", "user", "rol"]  # add report
-endpoints = [("s", "GET"), ("/?", "GET"), ("/insert", "POST"), ("/update/?", "PUT"), ("/delete/?", "DELETE")]
+modules = ["candidate", "party", "table", "result", "user", "rol", "report"]
+endpoints = [("s", "GET"), ("/?", "GET"), ("/insert", "POST"), ("/update/?", "PUT"), ("/delete/?", "DELETE"),
+             ("/get_greatest_vote", "GET"), ("/get_results_by_candidate", "GET")]
 url = f'{security_backend}/permission/insert'
 for module in modules:
     for endpoint, method in endpoints:
@@ -42,9 +42,11 @@ for module in modules:
         url_relation = f'{security_backend}/rol/update/{admin.get("idRol")}/add_permission/{data_.get("id")}'
         response = requests.put(url_relation, headers=headers)
 
+        # To add permissions to Jury
 
 modules = ["result", "report"]
-endpoints = [("s", "GET"), ("/?", "GET"), ("/insert", "POST"), ("/update/?", "PUT")]
+endpoints = [("s", "GET"), ("/?", "GET"), ("/insert", "POST"), ("/update/?", "PUT"), ("get_greatest_vote", "GET"),
+             ("/get_results_by_candidate", "GET")]
 
 url = f'{security_backend}/permission/insert'
 for module in modules:
@@ -62,7 +64,7 @@ for module in modules:
 
 # To allow access to citizens only to the report module
 modules = ["report"]
-# endpoints = [("s", "GET"), ("/?", "GET"), ("/insert", "POST"), ("/update/?", "PUT")]
+endpoints = [("/get_greatest_vote", "GET"), ("/get_results_by_candidate", "GET")]
 
 url = f'{security_backend}/permission/insert'
 for module in modules:

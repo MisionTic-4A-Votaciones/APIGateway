@@ -14,32 +14,17 @@ def get_all_reports() -> dict:
     return response.json()
 
 
-@report_blueprints.route("/report/<string:id_>", methods=['GET'])
-def get_report_by_id(id_: str) -> dict:
-    url = url_base + f"/{id_}"
+@report_blueprints.route("/report/get_greatest_vote", methods=['GET'])
+def get_greatest_vote(id_: str) -> dict:
+    url = url_base + "/all"
     response = requests.get(url, headers=HEADERS)
     return response.json()
 
 
-@report_blueprints.route("/report/insert", methods=['POST'])
-def insert_report() -> dict:
-    report = request.get_json()
-    url = url_base + "/insert"
-    response = requests.post(url, headers=HEADERS, json=report)
+@report_blueprints.route("/report/get_results_by_candidate", methods=['GET'])
+def get_results_by_candidate() -> dict:
+    url = url_base + "/all"
+    response = requests.get(url, headers=HEADERS)
     return response.json()
 
-
-@report_blueprints.route("/report/update/<string:id_>", methods=['PUT'])
-def update_report(id_: str) -> dict:
-    report = request.get_json()
-    url = url_base + f'/update/{id_}'
-    response = requests.patch(url, headers=HEADERS, json=report)
-    return response.json()
-
-
-@report_blueprints.route("/report/delete/<string:id_>", methods=['DELETE'])
-def delete_report(id_: str) -> dict:
-    url = url_base + f'/delete/{id_}'
-    response = requests.delete(url, headers=HEADERS)
-    return response.json()
 
